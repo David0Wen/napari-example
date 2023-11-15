@@ -1,0 +1,57 @@
+name: napari-example
+display_name: FooBar Segmentation
+# use 'hidden' to remove plugin from napari hub search results
+visibility: public
+# see https://napari.org/stable/plugins/manifest.html for valid categories
+categories: ["Annotation", "Segmentation", "Acquisition"]
+contributions:
+  commands:
+    - id: napari-example.get_reader
+      python_name: napari_example._reader:napari_get_reader
+      title: Open data with FooBar Segmentation
+    - id: napari-example.write_multiple
+      python_name: napari_example._writer:write_multiple
+      title: Save multi-layer data with FooBar Segmentation
+    - id: napari-example.write_single_image
+      python_name: napari_example._writer:write_single_image
+      title: Save image data with FooBar Segmentation
+    - id: napari-example.make_sample_data
+      python_name: napari_example._sample_data:make_sample_data
+      title: Load sample data from FooBar Segmentation
+    - id: napari-example.make_container_widget
+      python_name: napari_example:ImageThreshold
+      title: Make threshold Container widget
+    - id: napari-example.make_magic_widget
+      python_name: napari_example:threshold_magic_widget
+      title: Make threshold magic widget
+    - id: napari-example.make_function_widget
+      python_name: napari_example:threshold_autogenerate_widget
+      title: Make threshold function widget
+    - id: napari-example.make_qwidget
+      python_name: napari_example:ExampleQWidget
+      title: Make example QWidget
+  readers:
+    - command: napari-example.get_reader
+      accepts_directories: false
+      filename_patterns: ['*.npy']
+  writers:
+    - command: napari-example.write_multiple
+      layer_types: ['image*','labels*']
+      filename_extensions: []
+    - command: napari-example.write_single_image
+      layer_types: ['image']
+      filename_extensions: ['.npy']
+  sample_data:
+    - command: napari-example.make_sample_data
+      display_name: FooBar Segmentation
+      key: unique_id.1
+  widgets:
+    - command: napari-example.make_container_widget
+      display_name: Container Threshold
+    - command: napari-example.make_magic_widget
+      display_name: Magic Threshold
+    - command: napari-example.make_function_widget
+      autogenerate: true
+      display_name: Autogenerate Threshold
+    - command: napari-example.make_qwidget
+      display_name: Example QWidget
